@@ -1,0 +1,36 @@
+{
+  "name": "vzhuh-cloud-plugin",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare-compatible Worker hosting in Russia: MCP and publishing skills",
+  "keywords": [
+    "pi-package",
+    "mcp",
+    "workers",
+    "vzhuh"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "pi": {
+    "extensions": [
+      "./pi/index.js"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "mcp-remote": "0.16.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vzhuh-cloud/agent-plugins.git"
+  },
+  "homepage": "https://vzhuh.cloud/docs/agents",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}

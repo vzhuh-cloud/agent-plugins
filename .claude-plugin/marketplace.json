@@ -1,0 +1,17 @@
+{
+  "name": "vzhuh-cloud",
+  "owner": {
+    "name": "vzhuh.cloud"
+  },
+  "metadata": {
+    "description": "Workers, persistent D1/R2, MCP and publishing skills"
+  },
+  "plugins": [
+    {
+      "name": "vzhuh",
+      "source": "./",
+      "version": "0.2.0",
+      "description": "vzhuh.cloud MCP and publishing skills"
+    }
+  ]
+}

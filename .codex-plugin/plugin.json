@@ -1,0 +1,7 @@
+{
+  "name": "vzhuh",
+  "version": "0.2.0",
+  "description": "Cloudflare-compatible Workers, D1/R2 and hosting in Russia.",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
