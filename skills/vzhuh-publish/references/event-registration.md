@@ -13,3 +13,7 @@ The example is a responsive landing page “Кофе и разговоры” wi
 Capacity check and INSERT are one conditional SQL statement; unique email handles duplicates. Do not implement count-then-insert as separate operations. Capacity is in the Worker constant; avoid lowering it below already accepted registrations. Email lowercasing is a deliberate simple matching rule, not proof of identity. The honeypot and Origin check are not bot protection or rate limiting; before opening a high-traffic public campaign, add server-side abuse limits and verification appropriate to it. No payments, waiting list, cancellation tokens, email delivery or verified identity is claimed by this template.
 
 Persist only the needed fields. The included privacy page is explicitly an unfinished demo, not ready legal language. Replace it and decide a deletion date before collecting actual personal data. Preview has separate D1; preview signups are not migrated into production when promoting code.
+
+## Published reference application
+
+`../assets/event-registration-public/` contains the exact public gallery application's source, distinct from the base template above. It uses real Worker + D1, permits cancellation by the registration reference returned after creation, and expires sample records on requests after 24 hours. It is an example of a working registration site, not an actual scheduled event. Use synthetic data when testing it. Do not replace its backend with localStorage in product-facing galleries.

@@ -42,3 +42,9 @@ In Pi, use `vzhuh_tools` to discover the MCP schemas, then `vzhuh_call` with `{n
 5. Keep new sites private unless the user's request authorizes public access. To share with named readers, grant their Yandex profile email. Public visibility opens both environments, including API and files. Do not request `platform:admin` for publishing.
 
 Use the `vzhuh-manage` skill for access, diagnostics, quota cleanup and rollback. Do not treat a failed publish as permission to delete data or relax access controls. Inspect status after a timeout before retrying the same operation; reuse its idempotency key.
+
+## Public examples and product-facing content
+
+Examples on a product landing page or in its gallery are for prospective users. A gallery entry must link to an actually deployed public application, not a localhost page, localStorage recreation, fake chat or test fixture. Verify the public URL and server-side behavior before listing it. Keep runnable source templates separate from deployed examples; an unconnected Telegram/MAX bot remains a recipe, not a live example. Do not silently replace required backend or external integrations with browser mocks.
+
+The public event registration reference is deployed on vzhuh with real Worker + D1. Its exact sources are in `assets/event-registration-public/`: cancellation requires the returned unguessable registration reference, and expired sample records are removed on requests after 24 hours. The base `event-registration/` template is for a user's own event and has different retention/cancellation behavior. See https://vzhuh.cloud/examples for verified published applications.
