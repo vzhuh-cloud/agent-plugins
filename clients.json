@@ -3,7 +3,7 @@
     "id": "codex",
     "name": "Codex",
     "description": "Штатный Git-marketplace Codex: MCP и оба навыка устанавливаются одним плагином.",
-    "command": "codex plugin marketplace add vzhuh-cloud/agent-plugins --ref v0.2.0\ncodex plugin add vzhuh@vzhuh-cloud\ncodex mcp login vzhuh"
+    "command": "codex plugin marketplace add vzhuh-cloud/agent-plugins --ref v0.3.0\ncodex plugin add vzhuh@vzhuh-cloud\ncodex mcp login vzhuh"
   },
   {
     "id": "claude",
@@ -15,18 +15,18 @@
     "id": "pi",
     "name": "Pi",
     "description": "Штатный Pi package из GitHub, закреплённый на теге. После установки в Pi выполни /vzhuh-login.",
-    "command": "pi install git:github.com/vzhuh-cloud/agent-plugins@v0.2.0"
+    "command": "pi install git:github.com/vzhuh-cloud/agent-plugins@v0.3.0"
   },
   {
     "id": "opencode",
     "name": "OpenCode",
     "description": "Для OpenCode V2. После подключения открой /mcps и авторизуй vzhuh. Git clone, ссылки на навыки и штатная MCP-команда; установочный скрипт не запускается.",
-    "command": "mkdir -p \"$HOME/.local/share/vzhuh\"\ngit clone --branch v0.2.0 https://github.com/vzhuh-cloud/agent-plugins.git \"$HOME/.local/share/vzhuh/agent-plugins\"\nmkdir -p \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish\" \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-publish\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage\" \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-manage\"\nopencode mcp add vzhuh --global --url https://vzhuh.cloud/mcp"
+    "command": "mkdir -p \"$HOME/.local/share/vzhuh\"\ngit clone --branch v0.3.0 https://github.com/vzhuh-cloud/agent-plugins.git \"$HOME/.local/share/vzhuh/agent-plugins\"\nmkdir -p \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish\" \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-publish\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage\" \"${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-manage\"\nopencode mcp add vzhuh --global --url https://vzhuh.cloud/mcp"
   },
   {
     "id": "hermes",
     "name": "Hermes",
     "description": "Для актуального Hermes с OAuth MCP. Если используешь профиль, заранее задай его HERMES_HOME. Git clone, ссылки на навыки и штатная MCP-команда; установочный скрипт не запускается.",
-    "command": "mkdir -p \"$HOME/.local/share/vzhuh\"\ngit clone --branch v0.2.0 https://github.com/vzhuh-cloud/agent-plugins.git \"$HOME/.local/share/vzhuh/agent-plugins\"\nmkdir -p \"${HERMES_HOME:-$HOME/.hermes}/skills\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish\" \"${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-publish\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage\" \"${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-manage\"\nhermes mcp add vzhuh --url https://vzhuh.cloud/mcp --auth oauth\nhermes mcp login vzhuh"
+    "command": "mkdir -p \"$HOME/.local/share/vzhuh\"\ngit clone --branch v0.3.0 https://github.com/vzhuh-cloud/agent-plugins.git \"$HOME/.local/share/vzhuh/agent-plugins\"\nmkdir -p \"${HERMES_HOME:-$HOME/.hermes}/skills\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish\" \"${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-publish\"\nln -s \"$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage\" \"${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-manage\"\nhermes mcp add vzhuh --url https://vzhuh.cloud/mcp --auth oauth\nhermes mcp login vzhuh"
   }
 ]

@@ -17,7 +17,7 @@ MCP и навыки для публикации **Cloudflare-совместим�
 Штатный Git-marketplace Codex: MCP и оба навыка устанавливаются одним плагином.
 
 ```sh
-codex plugin marketplace add vzhuh-cloud/agent-plugins --ref v0.2.0
+codex plugin marketplace add vzhuh-cloud/agent-plugins --ref v0.3.0
 codex plugin add vzhuh@vzhuh-cloud
 codex mcp login vzhuh
 ```
@@ -36,7 +36,7 @@ claude plugin install vzhuh@vzhuh-cloud --scope user
 Штатный Pi package из GitHub, закреплённый на теге. После установки в Pi выполни /vzhuh-login.
 
 ```sh
-pi install git:github.com/vzhuh-cloud/agent-plugins@v0.2.0
+pi install git:github.com/vzhuh-cloud/agent-plugins@v0.3.0
 ```
 
 ### OpenCode
@@ -45,7 +45,7 @@ pi install git:github.com/vzhuh-cloud/agent-plugins@v0.2.0
 
 ```sh
 mkdir -p "$HOME/.local/share/vzhuh"
-git clone --branch v0.2.0 https://github.com/vzhuh-cloud/agent-plugins.git "$HOME/.local/share/vzhuh/agent-plugins"
+git clone --branch v0.3.0 https://github.com/vzhuh-cloud/agent-plugins.git "$HOME/.local/share/vzhuh/agent-plugins"
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills"
 ln -s "$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish" "${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-publish"
 ln -s "$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage" "${XDG_CONFIG_HOME:-$HOME/.config}/opencode/skills/vzhuh-manage"
@@ -58,7 +58,7 @@ opencode mcp add vzhuh --global --url https://vzhuh.cloud/mcp
 
 ```sh
 mkdir -p "$HOME/.local/share/vzhuh"
-git clone --branch v0.2.0 https://github.com/vzhuh-cloud/agent-plugins.git "$HOME/.local/share/vzhuh/agent-plugins"
+git clone --branch v0.3.0 https://github.com/vzhuh-cloud/agent-plugins.git "$HOME/.local/share/vzhuh/agent-plugins"
 mkdir -p "${HERMES_HOME:-$HOME/.hermes}/skills"
 ln -s "$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-publish" "${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-publish"
 ln -s "$HOME/.local/share/vzhuh/agent-plugins/skills/vzhuh-manage" "${HERMES_HOME:-$HOME/.hermes}/skills/vzhuh-manage"
@@ -84,9 +84,9 @@ Worker ESM `fetch`, assets, D1 SQLite, R2 objects, независимые produc
 
 ## Обновление и удаление
 
-Релиз этого пакета — `v0.2.0`. Pi закреплён на теге; для нового релиза повтори `pi install` с новым тегом. Codex: добавь marketplace с новым `--ref`, затем обнови установку плагина штатными командами. Claude: `claude plugin marketplace update vzhuh-cloud`, затем `claude plugin update vzhuh@vzhuh-cloud`. Для Git checkout сначала проверь локальные изменения, затем `git fetch --tags` и `git checkout <новый-тег>`.
+Релиз этого пакета — `v0.3.0`. Pi закреплён на теге; для нового релиза повтори `pi install` с новым тегом. Codex: добавь marketplace с новым `--ref`, затем обнови установку плагина штатными командами. Claude: `claude plugin marketplace update vzhuh-cloud`, затем `claude plugin update vzhuh@vzhuh-cloud`. Для Git checkout сначала проверь локальные изменения, затем `git fetch --tags` и `git checkout <новый-тег>`.
 
-Удаление: `codex plugin remove vzhuh@vzhuh-cloud`, `claude plugin uninstall vzhuh@vzhuh-cloud`, `pi remove git:github.com/vzhuh-cloud/agent-plugins@v0.2.0`. Для OpenCode/Hermes отключи MCP штатным способом и удали только две ссылки на навыки. Серверный доступ отзывается в [кабинете](https://vzhuh.cloud/app/connections), сайты и их данные остаются.
+Удаление: `codex plugin remove vzhuh@vzhuh-cloud`, `claude plugin uninstall vzhuh@vzhuh-cloud`, `pi remove git:github.com/vzhuh-cloud/agent-plugins@v0.3.0`. Для OpenCode/Hermes отключи MCP штатным способом и удали только две ссылки на навыки. Серверный доступ отзывается в [кабинете](https://vzhuh.cloud/app/connections), сайты и их данные остаются.
 
 Если использовал старый установщик 0.1.0: прежние файлы лежат в `~/.local/share/vzhuh/integrations/0.1.0`. Сначала отключи старое подключение/плагин и убери его ссылки на навыки, затем устанавливай из этого репозитория. Не удаляй весь каталог конфигурации клиента. Пользовательские сайты и данные эта миграция не затрагивает.
 
@@ -100,3 +100,12 @@ npm test
 Тесты: подготовка бинарных файлов/хешей/chunks и безопасных путей, Pi tool registration/errors, настоящий stdio → HTTP MCP мост через mcp-remote. CI запускает их на Node 22 и 24. Codex marketplace и plugin установлены в изолированном CODEX_HOME; Claude manifests проверены его CLI. Это не утверждение, что живой OAuth проверен во всех пяти клиентах.
 
 [Codex packaging](https://developers.openai.com/plugins/build/plugins) · [Claude plugins](https://code.claude.com/docs/en/plugins-reference) · [OpenCode MCP](https://opencode.ai/docs/mcp-servers/) · [Hermes MCP](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp) · [Pi packages](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md).
+
+## Готовые примеры
+
+В `vzhuh-publish` включены исходники и инструкции:
+
+- [Бот лояльности Telegram + MAX](skills/vzhuh-publish/references/webhook-bots.md): D1-журнал, штампы, права бариста, защита от повторных событий и чеков. Для вебхуков и отправки ответов нужен отдельный Docker-сервис; исходящие HTTP-запросы Worker сейчас отключены.
+- [Регистрация на мероприятие](skills/vzhuh-publish/references/event-registration.md): адаптивный сайт, форма, D1, атомарный лимит мест и уникальные email. Без отправки писем и проверки email.
+
+Копируй шаблон из `skills/vzhuh-publish/assets/` в свой проект, затем запускай его `build.mjs`. В MCP загружай только полученный `artifact/`. `.env` и токены ботов остаются вне сборки. `npm test` проверяет примеры на Miniflare, конкурентные записи и адаптеры вебхуков; настоящие аккаунты ботов тестам не нужны.

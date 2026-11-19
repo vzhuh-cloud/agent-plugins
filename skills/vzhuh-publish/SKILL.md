@@ -23,6 +23,12 @@ Read [references/runtime.md](references/runtime.md) before writing or adapting a
 
 Do not promise arbitrary Cloudflare compatibility: outbound Worker `fetch` is blocked; KV, Durable Objects, Queues, Cron, WebSocket, custom domains, managed secrets and billing are not implemented. Next.js static export can use the static profile; arbitrary Next.js SSR cannot be uploaded unchanged. Closed ChatGPT identity/connectors do not transfer. No payment, email-delivery or external-API feature works merely because it runs in a Worker. Explain the missing capability before building a design that depends on it.
 
+## Ready-to-adapt examples
+
+- For Telegram/MAX webhook bots or cafe loyalty, read [references/webhook-bots.md](references/webhook-bots.md). Copy `assets/cafe-bot/`: a D1 loyalty Worker plus a separately hosted Docker webhook bridge. The bridge is required because outbound HTTP and managed secrets are not supported in this hosting profile. Do not advertise this as a Worker-only deployment.
+- For event signup pages, read [references/event-registration.md](references/event-registration.md). Copy `assets/event-registration/`: a responsive site, Worker and D1 schema with atomic seat limits and duplicate-email protection. It does not verify emails or send confirmations.
+- Copy templates to the user's workspace before editing. Build only `artifact/`; never upload the bridge `.env` or bot tokens. Describe demo limitations and run the relevant tests before publishing.
+
 ## Connect and publish
 
 The MCP endpoint is `https://vzhuh.cloud/mcp`; use OAuth with `sites:read sites:write`. The user completes Yandex sign-in and client consent. Never request their password or embed access tokens in the build. Discover the client's tools: names may be prefixed with `vzhuh` or `mcp_vzhuh_`.

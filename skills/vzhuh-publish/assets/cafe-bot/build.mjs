@@ -1,0 +1,15 @@
+import {mkdir,copyFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const token=process.env.BRIDGE_TOKEN ?? '';
+const staff=(process.env.STAFF_IDS ?? '').split(',').map(s=>s.trim()).filter(Boolean);
+if(!/^[a-f0-9]{64}$/.test(token)||!staff.length||staff.some(s=>!/^(tg|max):[0-9]{1,20}$/.test(s))) throw new Error('Set random 32-byte hex BRIDGE_TOKEN and comma-separated STAFF_IDS, e.g. tg:123,max:456');
+const output=path.join(root,'artifact');
+for(const dir of ['.openai','dist/server','drizzle'])await mkdir(path.join(output,dir),{recursive:true});
+await copyFile(path.join(root,'worker.mjs'),path.join(output,'dist/server/index.js'));
+await copyFile(path.join(root,'drizzle/0000_loyalty.sql'),path.join(output,'drizzle/0000_loyalty.sql'));
+await writeFile(path.join(output,'dist/server/config.mjs'),'export const config = '+JSON.stringify({bridgeTokenHash:createHash('sha256').update(token).digest('hex'),staff})+';\n');
+await writeFile(path.join(output,'.openai/hosting.json'),JSON.stringify({d1:'DB',compatibility_date:'2026-07-01'},null,2));
+console.log('Ready: artifact/ (no bot tokens or bridge secret included)');

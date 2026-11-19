@@ -1,0 +1,11 @@
+import {mkdir,copyFile,writeFile} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const out=path.join(root,'artifact');
+for(const dir of ['.openai','dist/server','dist/client','drizzle'])await mkdir(path.join(out,dir),{recursive:true});
+await copyFile(path.join(root,'worker.mjs'),path.join(out,'dist/server/index.js'));
+for(const name of ['index.html','style.css','app.js','privacy.html'])await copyFile(path.join(root,name),path.join(out,'dist/client',name));
+await copyFile(path.join(root,'drizzle/0000_registrations.sql'),path.join(out,'drizzle/0000_registrations.sql'));
+await writeFile(path.join(out,'.openai/hosting.json'),JSON.stringify({d1:'DB',compatibility_date:'2026-07-01'},null,2));
+console.log('Ready: artifact/');

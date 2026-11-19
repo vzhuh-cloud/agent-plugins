@@ -1,6 +1,6 @@
 {
   "name": "vzhuh-cloud-plugin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Cloudflare-compatible Worker hosting in Russia: MCP and publishing skills",
@@ -32,5 +32,8 @@
   "homepage": "https://vzhuh.cloud/docs/agents",
   "scripts": {
     "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "miniflare": "4.20260730.0"
   }
 }

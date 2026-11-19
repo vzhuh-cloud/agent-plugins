@@ -1,0 +1,15 @@
+services:
+  bridge:
+    image: node:24-alpine
+    working_dir: /app
+    command: [node, bridge.mjs]
+    user: node
+    env_file: .env
+    ports: ["127.0.0.1:8080:8080"]
+    volumes: ["./bridge.mjs:/app/bridge.mjs:ro"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+    mem_limit: 128m
+    pids_limit: 64

@@ -5,7 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 const endpoint='https://vzhuh.cloud/mcp';
-export function bridge({makeClient=()=>new Client({name:'vzhuh-pi',version:'0.2.0'}),makeTransport=options=>new StdioClientTransport(options),authDirectory,transportOptions}={}){
+export function bridge({makeClient=()=>new Client({name:'vzhuh-pi',version:'0.3.0'}),makeTransport=options=>new StdioClientTransport(options),authDirectory,transportOptions}={}){
  let client,pending;
  const connect=async()=>{
   if(client)return client;if(pending)return pending;

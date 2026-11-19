@@ -1,6 +1,6 @@
 {
   "name": "vzhuh",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Build and publish Cloudflare-compatible Worker apps with persistent D1/R2 on vzhuh.cloud.",
   "author": {
     "name": "vzhuh.cloud"
